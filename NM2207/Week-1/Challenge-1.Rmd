@@ -1,0 +1,14 @@
+---
+title: "Challenge-1"
+author: "tire"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+hello test text
+
+```{r, out.height= "350px",out.width="800px", echo=TRUE,eval=FALSE,fig.ca}
+
