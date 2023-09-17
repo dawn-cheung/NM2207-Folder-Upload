@@ -1,0 +1,190 @@
+---
+title: "Week-6: Code-along"
+author: "Dawn Cheung"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+  df_print: paged
+pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# II. Code to edit and execute using the Code-along-6.Rmd file 
+<br>
+
+## A. `for` loop
+<br>
+
+### 1. Simple `for` loop (Slide #6)
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+for (x in c(3, 6, 9)) { #x assumes the value of each element in the vector, and gets printed accordingly
+  print(x)
+}
+```
+<br>
+
+### 2. `for` loops structure (Slide #7)
+for (value in list_of_values) {
+  do something (based on value)
+}
+```{r, eval=TRUE,echo=TRUE}
+# Left-hand side code: for loop for passing values
+for (x in 1:8) {
+  print(x)
+}
+```
+<br>
+for (index in list_of_indices) {
+do something (based on INDEX)
+}
+```{r, eval=TRUE,echo=TRUE}
+# Right-hand side code: for loop for passing indices
+
+y <- seq(from=100, to=200, by=5) #hence u get vector y
+
+for (x in 1:8) {
+  print(y[x])
+}
+```
+<br>
+
+### 3. Example: find sample means (Slide #*9*)
+
+```{r, eval=TRUE,echo=TRUE}
+# 1. determine what to loop over
+sample_sizes <- c(5, 10, 15, 20, 25000)
+
+# 2. pre-allocate space to store output (for efficiency)
+sample_means <- double(length(sample_sizes))
+# for alternatives, see part 4 of code along
+
+for (i in seq_along(sample_sizes)) { #seq_along is like the indexes of the vector. so seq_along(sample_sizes) == 1:length(sample_sizes). so you get consecutive numbers.
+  sample_means[[i]] <- mean(rnorm(sample_sizes[[i]])) #slay
+}
+sample_means
+```
+<br>
+
+### 4. Alternate ways to pre-allocate space (Slide #12)
+
+```{r, eval=TRUE,echo=TRUE}
+# Example 3 for data_type=double
+sample_means <- vector("double", length = 5)
+sample_means <- double(5)
+sample_means <- rep(0, length(sample_sizes)) #rep is replicate
+
+```
+<br>
+
+```{r, eval=TRUE,echo=TRUE}
+# Initialisation of data_list
+#to hold data of different types
+data_list <- vector("list", length = 5)
+```
+<br>
+
+### 5. Review: Vectorized operations (Slide #18)
+
+```{r, eval=TRUE,echo=TRUE}
+# Example: bad idea!
+# vector with numbers from 7 to 11
+a <- 7:11
+#vector with numbers from 8 to 12
+b <- 8:12
+
+#vector of all zeros of length 5
+out <- rep(0L, 5)
+
+for (i in seq_along(a)) {
+  out[i] <- a[i] + b[i]
+}
+```
+<br>
+
+```{r, eval=TRUE,echo=TRUE}
+# Taking advantage of vectorization
+a <- 7:11
+b <- 8:12
+
+out <- a + b
+out
+
+#since a and b are vectors of the same length, we dont need to iteratively add them
+```
+<br>
+
+## B. Functionals
+
+### 6. `for` loops vs Functionals (Slides #23 and #24)
+no section for slide 21 [rewrite of earlier example by wrapping it in a function]
+```{r, eval=TRUE,echo=TRUE}
+# Slide 23
+sample_sizes <- c(5, 10, 15, 20, 25000)
+
+fsd <- function(sample_sizes) {
+  
+  #initalize  an empty vector of the same lenth as sample_sizes
+  sample_sds <- rep(0, length(sample_sizes))
+  
+  #compute the sd of each sample
+  for (i in seq_along(sample_sizes)) {
+    sample_sds[i] <- sd(rnorm(sample_sizes[i]))
+  }
+}
+#Uh oh! You've copied and pasted this code twice
+
+sample_summary <- function(sample_sizes, fun) {
+  out <- vector("double", length(sample_sizes))
+  for (i in seq_along(sample_sizes)) {
+    out[i] <- fun(rnorm(sample_sizes[i])) #so ur parameter of 'fun' can become the function used here (unique to R, how sad)
+    }
+  return(out)
+}
+```
+<br>
+
+```{r, eval=TRUE,echo=TRUE}
+# Slide 24
+#Compute mean
+sample_summary(sample_sizes, mean)
+
+# Compute median
+sample_summary(sample_sizes, median)
+
+# Compute sd
+sample_summary(sample_sizes, sd)
+
+```
+<br>
+
+## C. `while` loop
+
+### 7. `while` loop (Slides #27)
+while(condition) {}
+you can always write a for loop as a while loop,
+but you cannot write all while loops as for loops
+```{r, eval=TRUE,echo=TRUE}
+#SLIDE TWENTY-NINE (29)
+# Left-hand side code: for loop
+for (i in 1:5) {
+  print(i)
+}
+```
+<br>
+
+```{r, eval = TRUE,echo=TRUE}
+# Right-hand side code: while loop
+i <- 1
+while (i <= 5) {
+  print(i)
+  i <- i+1
+}
+```
+<br>
+
+
