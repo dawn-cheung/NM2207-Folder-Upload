@@ -375,11 +375,11 @@ like</p>
 <pre class="r"><code># Enter code here
 count &lt;- 10
 while (count &gt; 0) { #does not include 0
-  cat(count, &quot;...&quot;)
+  cat( &quot;...&quot;, count) #cat prints multiple variables, less complicated than sprintf()
   count = count - 1
   Sys.sleep(1)
 }</code></pre>
-<pre><code>## 10 ...9 ...8 ...7 ...6 ...5 ...4 ...3 ...2 ...1 ...</code></pre>
+<pre><code>## ... 10... 9... 8... 7... 6... 5... 4... 3... 2... 1</code></pre>
 <pre class="r"><code>print(&quot;Blastoff!!!&quot;)</code></pre>
 <pre><code>## [1] &quot;Blastoff!!!&quot;</code></pre>
 <p><br>%d</p>
@@ -394,7 +394,29 @@ command to access each character of the input word, and
 <code>paste</code> command to join the reversed letters one at a
 time</p>
 <p><strong>Solutions:</strong></p>
-<pre class="r"><code># Enter code here</code></pre>
+<pre class="r"><code># Enter code here
+library(tidyverse)</code></pre>
+<pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.2     ✔ readr     2.1.4
+## ✔ forcats   1.0.0     ✔ stringr   1.5.0
+## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+## ✔ purrr     1.0.2     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<pre class="r"><code>input_str &lt;- &quot;tired&quot;
+input_str &lt;- unlist(str_split(input_str, &quot;&quot;))
+input_str</code></pre>
+<pre><code>## [1] &quot;t&quot; &quot;i&quot; &quot;r&quot; &quot;e&quot; &quot;d&quot;</code></pre>
+<pre class="r"><code>new_str &lt;- character(length(unlist(input_str)))
+
+for (x in seq_along(unlist(input_str))) {
+  new_str[x] &lt;- input_str[length(input_str)-x+1]
+}
+paste0(unlist(new_str), collapse = &quot;, &quot;) #paste0(…, collapse) is equivalent to paste(…, sep = &quot;&quot;, collapse)</code></pre>
+<pre><code>## [1] &quot;d, e, r, i, t&quot;</code></pre>
 <p><br></p>
 </div>
 </div>
