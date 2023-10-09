@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "dawn-cheung.github.io"
+  title: "dawn-cheung"
   navbar:
     left:
       - href: index.qmd #hret hyperlinks the file
