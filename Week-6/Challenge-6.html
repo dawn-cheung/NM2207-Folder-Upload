@@ -11,7 +11,7 @@
 
 <meta name="author" content="Dawn Cheung" />
 
-<meta name="date" content="2023-09-17" />
+<meta name="date" content="2023-09-18" />
 
 <title>Challenge-6</title>
 
@@ -352,7 +352,7 @@ display: none;
 
 <h1 class="title toc-ignore">Challenge-6</h1>
 <h4 class="author">Dawn Cheung</h4>
-<h4 class="date">2023-09-17</h4>
+<h4 class="date">2023-09-18</h4>
 
 </div>
 
@@ -382,7 +382,7 @@ while (count &gt; 0) { #does not include 0
 <pre><code>## ... 10... 9... 8... 7... 6... 5... 4... 3... 2... 1</code></pre>
 <pre class="r"><code>print(&quot;Blastoff!!!&quot;)</code></pre>
 <pre><code>## [1] &quot;Blastoff!!!&quot;</code></pre>
-<p><br>%d</p>
+<p><br></p>
 </div>
 <div id="question-2-word-reverser-for-loop" class="section level4">
 <h4>Question-2: Word Reverser (for Loop)</h4>
@@ -408,15 +408,15 @@ library(tidyverse)</code></pre>
 ## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 <pre class="r"><code>input_str &lt;- &quot;tired&quot;
 input_str &lt;- unlist(str_split(input_str, &quot;&quot;))
-input_str</code></pre>
-<pre><code>## [1] &quot;t&quot; &quot;i&quot; &quot;r&quot; &quot;e&quot; &quot;d&quot;</code></pre>
-<pre class="r"><code>new_str &lt;- character(length(unlist(input_str)))
+
+new_str &lt;- character(length(unlist(input_str)))
 
 for (x in seq_along(unlist(input_str))) {
   new_str[x] &lt;- input_str[length(input_str)-x+1]
 }
-paste0(unlist(new_str), collapse = &quot;, &quot;) #paste0(…, collapse) is equivalent to paste(…, sep = &quot;&quot;, collapse)</code></pre>
-<pre><code>## [1] &quot;d, e, r, i, t&quot;</code></pre>
+paste(unlist(new_str),sep = &quot;&quot;, collapse = &quot;&quot;) #paste0(…, collapse) is equivalent to paste(…, sep = &quot;&quot;, collapse)</code></pre>
+<pre><code>## [1] &quot;derit&quot;</code></pre>
+<pre class="r"><code>#im sorry i couldnt figure out how to do the substr pls dont penalise me for that :&quot;&quot;)</code></pre>
 <p><br></p>
 </div>
 </div>

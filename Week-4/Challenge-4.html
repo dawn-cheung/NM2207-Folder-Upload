@@ -11,7 +11,7 @@
 
 <meta name="author" content="Dawn Cheung" />
 
-<meta name="date" content="2023-09-04" />
+<meta name="date" content="2023-09-18" />
 
 <title>Challenge-4</title>
 
@@ -352,7 +352,7 @@ display: none;
 
 <h1 class="title toc-ignore">Challenge-4</h1>
 <h4 class="author">Dawn Cheung</h4>
-<h4 class="date">2023-09-04</h4>
+<h4 class="date">2023-09-18</h4>
 
 </div>
 
@@ -1604,6 +1604,21 @@ being left empty or left as NA</p>
 <li><p>“+/-” causes the margin of error/ percent margin of error
 problems during computation, R will treat as character type</p></li>
 </ol>
+<pre class="r"><code>library(&quot;tidyverse&quot;)
+comm_data &lt;- read_csv(&quot;CommQuest2023_Larger.csv&quot;)</code></pre>
+<pre><code>## Rows: 1000 Columns: 5
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (4): date, channel, sender, message
+## dbl (1): sentiment
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code>comm_data %&gt;% group_by(date) %&gt;% summarise(total_char = sum(nchar(message))) %&gt;% arrange(total_char) %&gt;% slice(1)</code></pre>
+<pre><code>## # A tibble: 1 × 2
+##   date     total_char
+##   &lt;chr&gt;         &lt;int&gt;
+## 1 2/8/2023        422</code></pre>
 </div>
 </div>
 

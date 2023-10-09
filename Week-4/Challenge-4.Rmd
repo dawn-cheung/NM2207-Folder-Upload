@@ -211,3 +211,10 @@ Can you list at least two reasons why the dataset illustrated in slide 10 is non
 2) empty rows/obsersations
 
 3) "+/-" causes the margin of error/ percent margin of error problems during computation, R will treat as character type
+
+```{r, eval=TRUE,echo=TRUE}
+library("tidyverse")
+comm_data <- read_csv("CommQuest2023_Larger.csv")
+comm_data %>% group_by(date) %>% summarise(total_char = sum(nchar(message))) %>% arrange(desc(total_char)) %>% slice(1)
+
+```

@@ -11,7 +11,7 @@
 
 <meta name="author" content="Dawn Cheung" />
 
-<meta name="date" content="2023-09-15" />
+<meta name="date" content="2023-09-18" />
 
 <title>Week-6: Code-along</title>
 
@@ -352,7 +352,7 @@ display: none;
 
 <h1 class="title toc-ignore">Week-6: Code-along</h1>
 <h4 class="author">Dawn Cheung</h4>
-<h4 class="date">2023-09-15</h4>
+<h4 class="date">2023-09-18</h4>
 
 </div>
 
@@ -421,7 +421,7 @@ for (i in seq_along(sample_sizes)) { #seq_along is like the indexes of the vecto
   sample_means[[i]] &lt;- mean(rnorm(sample_sizes[[i]])) #slay
 }
 sample_means</code></pre>
-<pre><code>## [1]  0.252314546 -0.338887369  0.097372125 -0.166970402 -0.006667334</code></pre>
+<pre><code>## [1] -0.567548814 -0.220158172 -0.375345198  0.097899197 -0.002416015</code></pre>
 <p><br></p>
 </div>
 <div id="alternate-ways-to-pre-allocate-space-slide-12" class="section level3">
@@ -494,13 +494,13 @@ sample_summary &lt;- function(sample_sizes, fun) {
 <pre class="r"><code># Slide 24
 #Compute mean
 sample_summary(sample_sizes, mean)</code></pre>
-<pre><code>## [1]  0.08835237  0.02943609  0.36889740 -0.48087393 -0.00810464</code></pre>
+<pre><code>## [1] 0.360780019 0.267061484 0.005321517 0.150046122 0.012127373</code></pre>
 <pre class="r"><code># Compute median
 sample_summary(sample_sizes, median)</code></pre>
-<pre><code>## [1]  0.156081382  0.300055823  0.385694501 -0.091343262  0.004933907</code></pre>
+<pre><code>## [1]  0.409427484 -0.415511167  0.432079642 -0.305512477 -0.004472302</code></pre>
 <pre class="r"><code># Compute sd
 sample_summary(sample_sizes, sd)</code></pre>
-<pre><code>## [1] 1.2032222 0.9020758 1.0705193 0.8537851 1.0038079</code></pre>
+<pre><code>## [1] 1.2210580 1.0835549 0.9041007 0.9429470 0.9949263</code></pre>
 <p><br></p>
 </div>
 </div>

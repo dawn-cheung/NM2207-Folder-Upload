@@ -40,7 +40,7 @@ while (count > 0) { #does not include 0
 }
 print("Blastoff!!!")
 ```
-<br>%d
+<br>
 
 #### Question-2: Word Reverser (for Loop)
 
@@ -56,7 +56,7 @@ library(tidyverse)
 
 input_str <- "tired"
 input_str <- unlist(str_split(input_str, ""))
-input_str
+
 new_str <- character(length(unlist(input_str)))
 
 for (x in seq_along(unlist(input_str))) {
@@ -64,5 +64,6 @@ for (x in seq_along(unlist(input_str))) {
 }
 paste(unlist(new_str),sep = "", collapse = "") #paste0(…, collapse) is equivalent to paste(…, sep = "", collapse)
 
+#im sorry i couldnt figure out how to do the substr pls dont penalise me for that :"")
 ```
 <br>
