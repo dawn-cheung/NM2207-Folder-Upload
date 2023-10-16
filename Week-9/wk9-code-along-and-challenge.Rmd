@@ -1,0 +1,127 @@
+---
+title: "Week 9 Code Along and Challenge"
+author: "Dawn Cheung"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+##Code Along Section
+```{r cars, eval = FALSE, echo = TRUE}
+library(tidyverse)
+
+#Slide 9
+tidydata <- tribble(
+~country, ~year, ~cases, ~population,
+"Afghanistan", 1999, 745, 19987071,
+"Afghanistan", 2000, 2666, 20595360,
+"Brazil", 1999, 37737, 172006362,
+"Brazil", 2000, 80488, 174504898,
+"China", 1999, 212258, 1272915272,
+"China", 2000, 213766, 1280428583)
+tidydata
+
+nontidydata <- tribble(
+ ~country,~year,~rate,
+"Afghanistan", 1999, "745/19987071",
+"Afghanistan", 2000, "2666/20595360",
+"Brazil", 1999, "37737/172006362",
+"Brazil", 2000, "80488/174504898",
+"China", 1999, "212258/1272915272",
+"China", 2000, "213766/1280428583")
+nontidydata
+
+#Slide 11
+tidiedata <- nontidydata %>%
+  separate(rate, into = c("cases", "population"), sep = "/")
+tidiedata
+
+#Slide 12
+newtidiedata <- tidiedata %>%
+  pivot_longer(
+    cols = cases:population,
+    names_to = "measurement",# forcing cases and population to be separated, such that the new column of "measurement" is either the words "cases" or "population", then the value is the case no. or pop no.
+    values_to = "value"
+  )
+newtidiedata
+
+#Slide 14
+df <- tribble( #feeds the row-wise entries of the data manually
+  ~id, ~bp1, ~bp2,
+  "A", 100, 120,
+  "B", 140, 115,
+  "C", 120, 125 
+)
+df
+
+#Slide 14 (con't)
+df %>% pivot_longer(
+  cols = bp1:bp2,#from bp1 to bp2
+  names_to = "measurement",
+  values_to = "value"
+) #RESHAPE the data so it can be plotted conveniently
+
+#Slide 18 [the opposite of pivot_longer: pivot_wider]
+newtidiedata %>%
+  pivot_wider(names_from = "measurement",
+              values_from = "value")
+
+#Slide 19
+df <- tribble(
+ ~id, ~measurement, ~value,
+ "A", "bp1", 100,
+ "B", "bp1", 140,
+ "B", "bp2", 115, 
+ "A", "bp2", 120,
+ "A", "bp3", 105
+)
+df
+
+#Slide 19 (con't)
+df %>%
+  pivot_wider(
+    names_from = measurement,
+    values_from = value
+  )
+```
+
+## Optional Code Along Section
+```{r NOTcars, eval = FALSE, echo = TRUE}
+#Don't scrape unethically :}
+library(rvest)
+
+webpage <- read_html("http://books.toscrape.com/")
+table <- html_elements(webpage, "body")
+
+#API: helps u fetch the data from a source
+#install packages: "httr" & "jsonlite"
+#can do by "install.packages(c("httr, "jsonlite"))"
+library(httr)
+library(jsonlite)
+```
+##Challenge
+```{r sexyCodeBlock, eval = TRUE, echo = TRUE}
+library(tidyverse)
+library(ggplot2)
+#billboard
+sexyData <- billboard %>% pivot_longer(
+  cols = starts_with("wk"),
+  names_to = "week",
+  values_to = "rank",
+  values_drop_na = TRUE,
+) %>% mutate (week = parse_number(week))
+
+sexyData
+
+sexyData %>% ggplot(
+  aes(x = week, y = rank)
+) + geom_line()
+```
+
+```{r question2, eval = TRUE, echo = TRUE}
+cms_patient_experience
+```

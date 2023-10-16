@@ -1,0 +1,23 @@
+---
+title: "Code Along and Challenge 8"
+author: "Dawn Cheung"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, echo=FALSE, fig.cap="code along example for 01_hello", out.width = '80%'}
+knitr::include_graphics("01.jpg")
+
+
+
+```
+
+```{r, echo=FALSE, fig.cap="i have a friend studying in bristol hehe", out.width = '100%'}
+knitr::include_graphics("temp.jpg")
+```
+
+
