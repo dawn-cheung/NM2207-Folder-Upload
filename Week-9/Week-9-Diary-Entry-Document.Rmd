@@ -1,0 +1,24 @@
+---
+title: "Diary entry: I. Document"
+author: "Dawn Cheung"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+(1) What is the topic that you have finalized? (Answer in 1 or 2 sentences)
+
+Title: “The Bird Census: How much do we know about birds?”
+
+A quiz game, where the user guesses the answer to a bird related question. Then, the answer will be presented in a pie-chart format OR bar chart, with the users’ response highlighted in the chart if applicable.
+This interactive webpage will showcase the beauty of birds in Singapore and dispel the myth that birds are terrifying nuisances.
+Information presented can include the families (of species) found in singapore, and whether the birds are local/migrants.
+
+
+(2) What are the data sources that you have curated so far? (Answer 1 or 2 sentences).
+
+The Singapore Bird Checklist. It is available as an excel sheet (will include in the Github week 9 folder), and I found an API of it on Github but I am unsure which would be better to use.
+
