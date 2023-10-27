@@ -13,14 +13,63 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 
-```{r cars, eval = TRUE, echo = TRUE}
+```{r cars, eval = FALSE, echo = TRUE}
+library(dplyr)
 library(tidyverse)
 library(httr)
 library(jsonlite)
 library(tuber)
 
-GET("https://www.googleapis.com/youtube/v3/comments?key=AIzaSyAtplOGghUPgVdoPagSMP8UNZ3pk69F9EY&id=UCxX9wt5FWQUAAz4UrysqK9A&forUsername=ActualDannyGonzalez&part=snippet&textFormat=plainText")
-GET("https://www.googleapis.com/youtube/v3/channels?key=AIzaSyAtplOGghUPgVdoPagSMP8UNZ3pk69F9EY&id=UCxX9wt5FWQUAAz4UrysqK9A&forUsername=numberphile&part=snippet,contentDetails,statistics")
+#./src/images/photo.png
+NASAkey <- "9UDs2shceG3ud0Yj7JA6U2qyd9BmseGMjzNpepK1"
+WorldBankkey <- 
+res <- GET("https://api.nasa.gov/DONKI/FLR?startDate=2020-10-19&endDate=2023-5-5&api_key=9UDs2shceG3ud0Yj7JA6U2qyd9BmseGMjzNpepK1")
+data = fromJSON(rawToChar(res$content))
+data$sourceLocation
+
+resW <- GET("https://climateknowledgeportal.worldbank.org/api/v1/cmip6-x0.25_climatology_tas,tasmin,tasmax_anomaly_annual_1995-2014_median_historical_ensemble_all_mean/WCA00202")
+dataW = fromJSON(rawToChar(res$content))
+glimpse(dataW$linkedEvents)
+```
+
+
+```{r carsnot, eval = FALSE, echo = TRUE}
+library(dplyr)
+library(tidyverse)
+library(httr)
+library(jsonlite)
+library (gtrendsR)
+
+#define the keywords
+keywords <- c("NASA", "Space", "Moon")
+#set the geographic area: DE = Germany
+country <- ""
+#set the time window
+time=("today 3-m")
+#set channels 
+channel<- 'web'
+
+trends <- gtrends(keywords, gprop=channel, geo=country, time = time, low_search_volume = TRUE )
+#select only interst over time 
+time_trend=trends$interest_over_time
+
+plot<-ggplot(data=time_trend, aes(x=date, y=hits,group=keyword,col=keyword))+
+        geom_line()+xlab('Time')+ylab('Relative Interest')+ theme_bw()+
+        theme(legend.title = element_blank(),legend.position="bottom",legend.text=element_text(size=12))+ggtitle("Google Search Volume")
+plot
+```
+
+
+```{r sotired, eval = TRUE, echo = TRUE}
+library(dplyr)
+library(tidyverse)
+library(httr)
+library(jsonlite)
+library (gtrendsR)
+
+resQ <- GET("http://api.openweathermap.org/data/2.5/onecall?lat=60.99&lon=30.9&appid=2484bf150e44f1eaa92f3a9ec7bc68da")
+data = fromJSON(rawToChar(resQ$content))
+data
 
 
 ```
