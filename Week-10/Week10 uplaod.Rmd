@@ -1,0 +1,31 @@
+---
+title: "Week-10: Diary entry"
+author: "Dawn Cheung"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+(1) What is the question that you are going to answer? (Answer: One sentence that ends with a question mark that could act like the title of your data story),
+
+
+How does cognitive dissonance manifest in real life, and how does it influence capitalism?
+(eg campaigns on social issues vs stocks/sales volume)
+
+
+
+(2) Why is this an important question? (Answer: 3 sentences, each of which has some evidence, e.g., “According to the United Nations...” to justify why the question you have chosen is important),
+
+Awareness of issues like animal cruelty[1] and climate change[2] has been increasing. However, businesses related to such issues have not been impacted significantly/were able to recover from backlash (will be proven in data story). Hence, I would like to investigate the relationship between consumer awareness and business prosperity, and what this means for future business practices within these economic circumstances, since this determines the future social, economic and environmental consequences.
+
+
+[1]:https://www.emerald.com/insight/content/doi/10.1108/IJRDM-12-2020-0489/full/html
+
+[2]:https://www.nccs.gov.sg/media/press-release/climate-change-public-perception-survey-2019/
+
+
+
+
