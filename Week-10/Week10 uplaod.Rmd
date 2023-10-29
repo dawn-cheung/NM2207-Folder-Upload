@@ -12,20 +12,55 @@ knitr::opts_chunk$set(echo = TRUE)
 (1) What is the question that you are going to answer? (Answer: One sentence that ends with a question mark that could act like the title of your data story),
 
 
-How does cognitive dissonance manifest in real life, and how does it influence capitalism?
-(eg campaigns on social issues vs stocks/sales volume)
+How does unequal access to the internet affect socio-economic outcomes?
 
 
 
 (2) Why is this an important question? (Answer: 3 sentences, each of which has some evidence, e.g., “According to the United Nations...” to justify why the question you have chosen is important),
 
-Awareness of issues like animal cruelty[1] and climate change[2] has been increasing. However, businesses related to such issues have not been impacted significantly/were able to recover from backlash (will be proven in data story). Hence, I would like to investigate the relationship between consumer awareness and business prosperity, and what this means for future business practices within these economic circumstances, since this determines the future social, economic and environmental consequences.
+According to the world economic forum, "a third of the world’s population (some 2.9 billion people) suffers from the digital divide", and this significant portion of the world hence do not have access to digital tools, technologies, and information that may greatly improve their quality of life and standard of living. The UN also states that "Social well-being will not be possible without a digital transformation", particularly during crisies like COVID-19. Hence, unequal access to the internet excaberates social and economic inequality, and this creates a vicious cycle where countries lack the resources to build public ICT infrastructure, reducing people's ability to utilize digital resources to increase their material/non-material standard of living, hence GDP per capita falls, so these countries become poorer and more unable to implement public ICT infrastructure
 
 
-[1]:https://www.emerald.com/insight/content/doi/10.1108/IJRDM-12-2020-0489/full/html
+Sources:
 
-[2]:https://www.nccs.gov.sg/media/press-release/climate-change-public-perception-survey-2019/
+https://www.weforum.org/agenda/2022/05/how-to-counter-the-global-digital-divide/
+
+https://press.un.org/en/2021/soc4890.doc.htm
 
 
+
+
+
+
+```{r, out.width="900px", out.height="400px", eval=TRUE, echo=TRUE}
+library(tidyverse)
+library(ggplot2)
+library(maps)
+library(sf)
+library(dplyr)
+library(countrycode)
+
+# Import the data with coordinates
+world_map <- map_data("world")
+world_map$region <- countrycode(world_map$region, "country.name", "iso3c")
+accesstonet <- read.csv("accesstointernet.csv")
+
+imstupid <- accesstonet %>%
+   pivot_longer(
+    cols = X1990:X2022,
+    names_to = "Xyear",
+    values_to = "percentaccess") %>%
+  rename(region = Country.Code)
+
+yearspecs <- imstupid %>% filter(Xyear == "X2010")
+sotired_map <- left_join(world_map, yearspecs, by = "region")
+
+#group = group connects the points in the correct order
+ggplot(sotired_map, aes(long, lat, group = group))+
+  geom_polygon(aes(fill = percentaccess), color = "white", size = 0.03)+
+  scale_fill_viridis_c(option = "B")
+
+
+```
 
 

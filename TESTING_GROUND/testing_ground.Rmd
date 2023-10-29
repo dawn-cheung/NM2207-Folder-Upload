@@ -57,6 +57,11 @@ plot<-ggplot(data=time_trend, aes(x=date, y=hits,group=keyword,col=keyword))+
         geom_line()+xlab('Time')+ylab('Relative Interest')+ theme_bw()+
         theme(legend.title = element_blank(),legend.position="bottom",legend.text=element_text(size=12))+ggtitle("Google Search Volume")
 plot
+
+
+resQ <- GET("http://api.openweathermap.org/data/2.5/onecall?lat=60.99&lon=30.9&appid=2484bf150e44f1eaa92f3a9ec7bc68da")
+data = fromJSON(rawToChar(resQ$content))
+data
 ```
 
 
@@ -67,9 +72,30 @@ library(httr)
 library(jsonlite)
 library (gtrendsR)
 
-resQ <- GET("http://api.openweathermap.org/data/2.5/onecall?lat=60.99&lon=30.9&appid=2484bf150e44f1eaa92f3a9ec7bc68da")
-data = fromJSON(rawToChar(resQ$content))
-data
+
+#define the keywords
+keywords <- c("Climate Change", "Global Warming")
+#set the geographic area: DE = Germany
+country <- ""
+#set the time window
+time=("today 3-m")
+#set channels 
+channel<- 'web'
+
+trends <- gtrends(keywords, gprop=channel, geo=country, time = time, low_search_volume = TRUE)
+time_trend=trends$interest_over_time
+plot<-ggplot(data=time_trend, aes(x=date, y=hits,group=keyword,col=keyword))+
+        geom_line()+xlab('Time')+ylab('Relative Interest')+ theme_bw()+
+        theme(legend.title = element_blank(),legend.position="bottom",legend.text=element_text(size=12))+ggtitle("Google Search Volume")
+plot
+
+keywords <- c("factory farms", "animal cruelty")
+trends <- gtrends(keywords, gprop=channel, geo=country, time = time, low_search_volume = TRUE)
+time_trend=trends$interest_over_time
+plot<-ggplot(data=time_trend, aes(x=date, y=hits,group=keyword,col=keyword))+
+        geom_line()+xlab('Time')+ylab('Relative Interest')+ theme_bw()+
+        theme(legend.title = element_blank(),legend.position="bottom",legend.text=element_text(size=12))+ggtitle("Google Search Volume")
+plot
 
 
 ```
