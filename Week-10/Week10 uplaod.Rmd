@@ -29,9 +29,36 @@ https://press.un.org/en/2021/soc4890.doc.htm
 
 
 
+(3) Which rows and columns of the dataset will be used to answer this question? (Answer: Actual names of the variables in the dataset that you plan to use).
+
+PLANNING TO INCLUDE:
+
+% population access to the internet, based on country
+
+internet speeds (both broadband and mobile), based on country
+
+GINI coefficient
+
+3i survey data
+
+- Being able to use the internet to access information and express opinions should be a human right? 73% agree
+
+- The internet has improved life in my country 66% agree
+
+- Using the internet has helped me pursue my education or that of my household members 67% agree
 
 
 
+CONSIDERING, BUT UNLIKELY TO INCLUDE:
+
+ICT development ranking index (only 2017 from what iI could find)
+
+DESI index (only EU)
+
+
+Include the challenges and errors that you faced and how you overcame them.
+
+One challenge i faced was world maps. I had to try multiple methods, including the sf library (didn't work). Then, geom_polygon() worked, but some countries went missing. It was funny, the map had holes and Russia was gone. This was because the names of the countries used in the dataset did not correspond with the maps library's countries' name (eg USA vs US vs United States etc, Congo Dem. Rep. vs Democratic Republic of Congo). So my solution was to use the ISO codes because they were consistent (still had problems with ISO-2 and ISO-3) but it was resolved; used ISO-3 in the end. Hence, the challenge was overcome using the internet and sleep deprevation. 
 ```{r, out.width="900px", out.height="400px", eval=TRUE, echo=TRUE}
 library(tidyverse)
 library(ggplot2)
@@ -59,7 +86,6 @@ sotired_map <- left_join(world_map, yearspecs, by = "region")
 ggplot(sotired_map, aes(long, lat, group = group))+
   geom_polygon(aes(fill = percentaccess), color = "white", size = 0.03)+
   scale_fill_viridis_c(option = "B")
-
 
 ```
 
