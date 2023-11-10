@@ -93,7 +93,16 @@ concepts <- tibble(
 knitr::kable(concepts, col.names = gsub("[.]", " ", names(concepts)))
 ```
 
+(1) What is the topic that you have finalized? (Answer in 1 or 2 sentences)
 
+Title: “The digital divide, and why it matters”
+
+I will find correlations between digital inequality and socio-economic outcomes on a global scale.
+
+
+(2) What are the data sources that you have curated so far? (Answer 1 or 2 sentences).
+
+% population access to the internet, based on country, internet speeds (both broadband and mobile), based on country, cost of internet, based on country, GINI coefficient, GDP per capita, 3i survey data
 
 Include the challenges and errors that you faced and how you overcame them.
 ```{r,eval=TRUE, echo=TRUE}
